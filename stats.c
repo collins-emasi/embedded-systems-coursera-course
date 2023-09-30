@@ -58,58 +58,29 @@ int main() {
 /* Add other Implementation File Code Here */
 
 double find_median(unsigned char * array, unsigned int size) {
-	if (size % 2 == 0) {
-		return (double)(array[(size-1)/2] + array[size/2])/2.0;
-	}
-	return (double)array[size/2];
+
 }
 
 double find_mean(unsigned char * array, unsigned int size) {
-	double sum = 0;
 
-	for (int i = 0; i < size; i++ ) {
-		sum += array[i];
-	}
-	return (sum/size);
 }
 
 unsigned char find_maximum(unsigned char * array, unsigned int size) {
-	sort_array(array, size);
-	return array[0];
+
 }
 
 unsigned char find_minimum(unsigned char * array, unsigned int size) {
-	sort_array(array, size);
-	return array[size-1];
+
 }
 
 void sort_array(unsigned char * array, unsigned int size) {
-	unsigned char temp;
-	for (unsigned int i = 0; i < size; i++) {
-		for (unsigned int j = 0; j < size-i-1; j++) {
-			if (array[j] < array[j+1]) {
-				temp = array[j];
-				array[j] = array[j+1];
-				array[j+1] = temp;
-			}
-		}
-	}
+
 }
 
 void print_statistics(unsigned char * array, unsigned int size) {
-	printf("Array: "); print_array(array, size);
-	sort_array(array, size);
-	printf("Sorted Array: "); print_array(array, size);
-	printf("Maximum: %u\n", find_maximum(array, size));
-	printf("Minimum: %u\n", find_minimum(array, size));
-	printf("Mediun: %.2f\n", find_median(array, size));
-	printf("Mean: %.2f\n", find_mean(array, size)); 
+ 
 }
 
 void print_array(unsigned char * array, unsigned int size) {
-	unsigned int i;
-	for ( i = 0; i < size; i++) {
-		printf("%u ", array[i]);
-	}
-	printf("\n");
+
 }
