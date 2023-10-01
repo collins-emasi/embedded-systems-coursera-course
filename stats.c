@@ -74,13 +74,23 @@ double find_mean(unsigned char * array, unsigned int size) {
 }
 
 unsigned char find_maximum(unsigned char * array, unsigned int size) {
-	sort_array(array, size);
-	return array[0];
+	unsigned char max = array[0];
+	for (unsigned int i = 0; i < size; i++) {
+		if (array[i] > max) {
+			max = array[i];
+		}
+	}
+	return max;
 }
 
 unsigned char find_minimum(unsigned char * array, unsigned int size) {
-	sort_array(array, size);
-	return array[size-1];
+	unsigned char min = array[0];
+	for (unsigned int i = 0; i < size; i++) {
+		if (array[i] < min) {
+			min = array[i];
+		}
+	}
+	return min;
 }
 
 void sort_array(unsigned char * array, unsigned int size) {
