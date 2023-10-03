@@ -26,7 +26,6 @@
 #      SPECS - Specs file to give the linker (nosys.specs, nano.specs)
 #
 #------------------------------------------------------------------------------
-include sources.mk
 
 # Platform Overrides
 PLATFORM = HOST
@@ -37,20 +36,29 @@ LINKER_FILE = ../msp432p401r.lds
 CPU = cortex-m0plus
 ARCH = thumb
 SPECS = nosys.specs
+MARCH = armv7e-m
+MFLOAT_ABI = hard
+MFPU = fpv4-sp-d16
 
 # Compiler Flags and Defines
-LDFLAGS = -Wl -Map=$(TARGET).map -T $(LINKER_FILE)
-CFLAGS = -Wall -MMD -MP -Werror -g -O0 -std=c99
+COMMON_LDFLAGS = -Wl,-Map=$(TARGET).map
+COMMON_CFLAGS = -Wall -Werror -g -O0 -std=c99
 COMMON_CPPFLAGS = -Wall
+
+include sources.mk
 
 ifeq ($(PLATFORM), HOST)
 	CC = gcc
 	LD = ld
+	LDFLAGS = $(COMMON_LDFLAGS)
+	CFLAGS = $(COMMON_CFLAGS)  	
 	CPPFLAGS = $(COMMON_CPPFLAGS) -DHOST
 else
 	CC = arm-none-eabi-gcc
 	LD = arm-none-eabi-ld
-	CPPFLAGS = -mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) $(COMMON_CPPFLAGS) -DMSP432
+	LDFLAGS = $(COMMON_LDFLAGS) -T $(LINKER_FILE)
+	CFLAGS = $(COMMON_CFLAGS)
+	CPPFLAGS =	-mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) $(COMMON_CPPFLAGS) -DMSP432
 endif
 
 # Pattern matching to dynamically generate a list
