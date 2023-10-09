@@ -33,7 +33,7 @@ TARGET = c1m2
 
 # Architectures Specific Flags
 LINKER_FILE = ../msp432p401r.lds
-CPU = cortex-m0plus
+CPU = cortex-m4
 ARCH = thumb
 SPECS = nosys.specs
 MARCH = armv7e-m
@@ -58,7 +58,8 @@ else
 	LD = arm-none-eabi-ld
 	LDFLAGS = $(COMMON_LDFLAGS) -T $(LINKER_FILE)
 	CFLAGS = $(COMMON_CFLAGS)
-	CPPFLAGS =	-mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) $(COMMON_CPPFLAGS) -DMSP432
+  	CPPFLAGS =	-mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) $(COMMON_CPPFLAGS) -DMSP432
+
 endif
 
 # Pattern matching to dynamically generate a list
